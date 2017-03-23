@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F6A60FFD-018A-4D0D-B85A-634DE4382AD2}</ProjectGuid>
+    <ProjectGuid>{36BFE3DD-1F74-41AC-8678-AAB9EC049B47}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -134,7 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MfinMobileApp\MfinMobileApp.csproj">
-      <Project>{08f41b22-bad6-44e3-9ea3-24816e844232}</Project>
+      <Project>{8d7597fd-de07-4e8f-afe4-93e6c3a90abc}</Project>
       <Name>MfinMobileApp</Name>
     </ProjectReference>
   </ItemGroup>

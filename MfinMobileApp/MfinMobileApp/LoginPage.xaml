@@ -6,11 +6,12 @@
         <ToolbarItem Text="Sign Up" Clicked="OnSignUpButtonClicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout VerticalOptions="StartAndExpand">
+        <StackLayout VerticalOptions="End" Padding="20,0,20,100">
+            <Image Source="logo.png" />
             <Label Text="Username" />
-            <Entry x:Name="usernameEntry" Placeholder="username" />
+            <Entry x:Name="usernameEntry"  />
             <Label Text="Password" />
-            <Entry x:Name="passwordEntry" IsPassword="true" Placeholder="Password" />
+            <Entry x:Name="passwordEntry" IsPassword="true"  />
             <Button Text="Login" Clicked="OnLoginButtonClicked" />
             <Label x:Name="messageLabel" />
         </StackLayout>

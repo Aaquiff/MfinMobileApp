@@ -21,6 +21,11 @@ namespace MfinMobileApp.Views
             InitializeComponent();
             BindingContext = new HomeViewModel();
         }
+
+        private void Button_Pressed(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new CustomerList());
+        }
     }
 
     class HomeViewModel : INotifyPropertyChanged

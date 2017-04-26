@@ -27,7 +27,7 @@ namespace MfinMobileApp
             {
                 bool res = LoginController.Login("Aaquiff", "*******");
                 if(res)
-                    App.Current.MainPage = new NavigationPage(new Views.CustomerList());
+                    App.Current.MainPage = new NavigationPage(new Views.Home());
                 else
                     DisplayAlert("Invalid Login","Username or password is incorrect","OK");
             }

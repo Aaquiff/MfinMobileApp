@@ -13,7 +13,7 @@ namespace MfinMobileApp
         {
             InitializeComponent();
 
-            MainPage = new MfinMobileApp.LoginPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()

@@ -19,7 +19,6 @@ namespace MfinMobileApp.Views
         public Home()
         {
             InitializeComponent();
-            BindingContext = new HomeViewModel();
         }
 
         private void Button_Pressed(object sender, EventArgs e)
@@ -28,32 +27,4 @@ namespace MfinMobileApp.Views
         }
     }
 
-    class HomeViewModel : INotifyPropertyChanged
-    {
-
-        public HomeViewModel()
-        {
-            IncreaseCountCommand = new Command(IncreaseCount);
-        }
-
-        int count;
-
-        string countDisplay = "You clicked 0 times.";
-        public string CountDisplay
-        {
-            get { return countDisplay; }
-            set { countDisplay = value; OnPropertyChanged(); }
-        }
-
-        public ICommand IncreaseCountCommand { get; }
-
-        void IncreaseCount() =>
-            CountDisplay = $"You clicked {++count} times";
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-    }
 }

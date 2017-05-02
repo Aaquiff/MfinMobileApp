@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MfinMobileApp.Controllers;
+using MfinMobileApp.Interfaces;
+using MfinMobileApp.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -16,19 +19,35 @@ namespace MfinMobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CustomerDetail : ContentPage
     {
-        public CustomerDetail()
+        Customer customer;
+        public CustomerDetail(Customer cus)
         {
+            this.customer = cus ;
+            
             InitializeComponent();
-            BindingContext = new CustomerDetailViewModel();
+            BindingContext = new CustomerDetailViewModel(cus);
+            
+        }
+
+        private void Button_Pressed(object sender, EventArgs e)
+        {
+            DependencyService.Get<IPhoneCall>().MakeQuickCall(customer.phone);
         }
     }
 
     class CustomerDetailViewModel : INotifyPropertyChanged
     {
 
-        public CustomerDetailViewModel()
+        public CustomerDetailViewModel(Customer cus)
         {
-            IncreaseCountCommand = new Command(IncreaseCount);
+            this.Customer = cus;         
+            
+        }
+        Customer customer;
+        public Customer Customer
+        {
+            get { return customer; }
+            set { customer = value; }
         }
 
         int count;
@@ -39,11 +58,6 @@ namespace MfinMobileApp.Views
             get { return countDisplay; }
             set { countDisplay = value; OnPropertyChanged(); }
         }
-
-        public ICommand IncreaseCountCommand { get; }
-
-        void IncreaseCount() =>
-            CountDisplay = $"You clicked {++count} times";
 
 
         public event PropertyChangedEventHandler PropertyChanged;

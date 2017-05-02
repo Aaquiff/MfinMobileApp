@@ -17,10 +17,29 @@ namespace MfinMobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CustomerList : ContentPage
     {
+       
+
         public CustomerList()
         {
             InitializeComponent();
             BindingContext = new CustomerListViewModel();
+        }
+
+        protected async override void OnAppearing()
+        {
+            CustomerController cc = new CustomerController();
+            List<Customer> Items = new List<Customer>();
+            try
+            {
+                customerList.ItemsSource = await cc.GetCustomersRest();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert(ex.Message,ex.InnerException.Message,"OK");
+            }
+
+            base.OnAppearing();
+
         }
 
         void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -32,7 +51,8 @@ namespace MfinMobileApp.Views
                 return;
 
             //await DisplayAlert("Selected", e.SelectedItem.ToString(), "OK");
-            await Navigation.PushAsync(new CustomerDetail());
+            Customer customer = (Customer)e.SelectedItem;
+            await Navigation.PushAsync(new CustomerDetail(customer));
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
@@ -47,18 +67,19 @@ namespace MfinMobileApp.Views
 
         public CustomerListViewModel()
         {
+
             CustomerController cc = new CustomerController();
-            Items = cc.GetCustomers();
+            /*Items = cc.GetCustomersRest();
 
             var sorted = from item in Items
-                         orderby item.customerId
-                         group item by item.fullName[0].ToString() into itemGroup
+                         orderby item.id
+                         group item by item.name[0].ToString() into itemGroup
                          select new Grouping<string, Customer>(itemGroup.Key, itemGroup);
 
             ItemsGrouped = new ObservableCollection<Grouping<string, Customer>>(sorted);
 
             RefreshDataCommand = new Command(
-                async () => await RefreshData());
+                async () => await RefreshData());*/
         }
 
         public ICommand RefreshDataCommand { get; }
